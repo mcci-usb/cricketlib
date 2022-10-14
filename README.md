@@ -22,7 +22,7 @@ Create a Python file and import the class library from package:
 ```python
 from cricketlib import searchswitch
 from cricketlib import switch3141
-from cricketlib import switch33201
+from cricketlib import switch3201
 from cricketlib import switch2101
 from cricketlib import switch2301
 ```
