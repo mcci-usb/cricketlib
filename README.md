@@ -27,6 +27,10 @@ from cricketlib import switch2101
 from cricketlib import switch2301
 ```
 ```python
+# --- found a list of available switches
+dlist = searchswitch.get_switches()
+```
+```python
 # ---Serial Communication---
 # windows Platform
 # here COM5, COM8, COM13...etc are exapmple ports.
@@ -41,6 +45,7 @@ sw4 = switch2301.Switch2301('COM13')
 ```python
 # ---Serial Communication---
 #Linux Platform
+# here /dev/ttyUSB0, /dev/ttyUSB1.etc are exapmple ports.
 sw1 = switch3201.Switch3201('/dev/ttyUSB0') 
 (or)
 sw2 = switch3141.Switch3141('/dev/ttyUSB1')
