@@ -2,6 +2,41 @@
 
 This is a Python library to control MCCI USB Switches.
 
+### Install Python package
+install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8.exe)
+
+### Install pip package
+```shell
+pip --version
+python -m pip install --upgrade pip
+```
+
+### Prerequisites for running or building
+
+<strong>On Windows:</strong>
+
+Development environment
+
+* OS - Windows 10 and 11 64 bit
+* Python - 3.7.8
+* pyserial - 3.5
+* pyusb - 1.2.1
+* libusb - 1.0.24b3
+* libusb1 - 3.0.0
+
+```shell
+pip install pyserial
+pip install pyusb
+pip install libusb
+pip install libusb1
+```
+
+### libusb-1.0.dll Library
+
+```python
+If on 64-bit Windows, copy libusb-1.0.dll library into C:\windows\SysWOW64
+```
+
 ### Installing Python Packages with Setup.py
 
 1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
