@@ -28,7 +28,8 @@ from cricketlib import switch2301
 ```
 ```python
 # ---Serial Communication---
-#windows Platform
+# windows Platform
+# here COM5, COM8, COM13...etc are exapmple ports.
 sw1 = switch3201.Switch3201('COM5') 
 (or)
 sw2 = switch3141.Switch3141('COM8')
