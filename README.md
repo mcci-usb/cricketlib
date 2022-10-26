@@ -123,6 +123,7 @@ sw1.get_amps()
 ```
 
 ## Release History
+- v1.0.1 update speed change in switch2101
 - v1.0.0 initial release.
 
 
