@@ -73,17 +73,17 @@ sw1 = switch3201.Switch3201('COM5')
 (or)
 sw2 = switch3141.Switch3141('COM8')
 (or)
-sw3 = switch2101.Switch2101('0A88C1001416')
+sw3 = switch2101.Switch2101('0002CC0014FF')
 (or)
 sw4 = switch2301.Switch2301('COM13')
 ```
 ```python
 # ---Serial Communication---
 #Linux Platform
-# here /dev/ttyUSB0, /dev/ttyUSB1.etc are exapmple ports.
-sw1 = switch3201.Switch3201('/dev/ttyUSB0') 
+# here /dev/ttyACMO, /dev/ttyACMO.etc are exapmple ports.
+sw1 = switch3201.Switch3201('/dev/ttyACMO') 
 (or)
-sw2 = switch3141.Switch3141('/dev/ttyUSB1')
+sw2 = switch3141.Switch3141('/dev/ttyACMO')
 ```
 ### Connect the USB Port
 ``` python
@@ -121,6 +121,16 @@ sw1.get_volts()
 # --- get the amps only for switch 3201, switch2301
 sw1.get_amps()
 ```
+### Switch 2101 ports switching
+```
+sw3 = S2101.Switch2101('0002CC0014FF')
+sw3.port_on("ss")
+time.sleep(2)
+sw3.port_off()
+time.sleep(1)
+sw3.port_on("hs")
+time.sleep(1)
+sw3.port_off()
 
 ## Release History
 - v1.0.1 update speed change in switch2101
