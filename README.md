@@ -58,7 +58,7 @@ Create a Python file and import the class library from package:
 from cricketlib import searchswitch
 from cricketlib import switch3141
 from cricketlib import switch3201
-from cricketlib import switch2101 as s2101
+from cricketlib import switch2101 as S2101
 from cricketlib import switch2301
 ```
 ```python
