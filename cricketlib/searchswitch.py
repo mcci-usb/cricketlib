@@ -9,7 +9,7 @@ VID_2101 = 0x040e
 PID_2101 = 0xf413
 
 def version():
-    return "Cricketlib v1.0.0"
+    return "Cricketlib v1.0.1"
 
 def get_switches():
     devList = search_switches()
