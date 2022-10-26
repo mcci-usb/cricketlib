@@ -131,6 +131,7 @@ time.sleep(1)
 sw3.port_on("hs")
 time.sleep(1)
 sw3.port_off()
+```
 
 ## Release History
 - v1.0.1 update speed change in switch2101
