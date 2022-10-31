@@ -2,8 +2,12 @@
 
 This is a Python library to control MCCI USB Switches.
 
-### Install Python package
+### Install Python3.7 (32-bit) package 
 install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8.exe)
+
+
+### Install Python3.7 (64-bit) package
+install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8-amd64.exe)
 
 ### Install pip package
 ```shell
@@ -30,11 +34,26 @@ pip install pyusb
 pip install libusb
 pip install libusb1
 ```
+# pyusb Error
 
-### libusb-1.0.dll Library
+## usb.core.NoBackendError: No backend available
+### libusb-1.0.dll Library supports on python(32-bit)
+```pyusb
+Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x86\libusb-1.0.dll
 
-```python
-If on 64-bit Windows, copy libusb-1.0.dll library into C:\windows\SysWOW64
+To
+
+C:\windows\SysWOW64
+```
+
+### libusb-1.0.dll Library supports on python (64-bit)
+usb.core.NoBackendError: No backend available
+```pyusb
+Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x64\libusb-1.0.dll
+
+To
+
+C:\windows\System32
 ```
 
 ### Installing Python Packages with Setup.py
@@ -87,6 +106,7 @@ sw2 = switch3141.Switch3141('/dev/ttyACMO')
 ```
 ### Connect the USB Port
 ``` python
+# Connect the USB Switch
 sw1.connect()
 ```
 ### Switching the port ON
@@ -134,6 +154,7 @@ sw3.port_off()
 ```
 
 ## Release History
+- v1.0.2 Support python 64-bit
 - v1.0.1 update speed change in switch2101
 - v1.0.0 initial release.
 
