@@ -23,7 +23,7 @@ from setuptools import setup
 
 setup(
     name='cricketapi',
-    version='1.0.1',
+    version='1.0.2',
     description='API for MCCI Connection exercisers',
     author='MCCI Corporation',
     author_email='',

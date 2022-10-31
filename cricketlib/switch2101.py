@@ -27,8 +27,8 @@ class Switch2101(usbswitch.UsbSwitch):
         else:
             self.portcmd = HS_CONNECT
         rc, rs = self.usbnode.control_port(self.portcmd)
-        print(rc, rs)
+        return rc, rs
     
     def port_off(self):
         rc, rs = self.usbnode.control_port(DEV_DISCONNECT)
-        print(rc, rs)
+        return rc, rs
