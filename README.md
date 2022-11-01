@@ -36,26 +36,6 @@ pip install libusb1
 ```
 # pyusb Error
 
-## usb.core.NoBackendError: No backend available
-### libusb-1.0.dll Library supports on python(32-bit)
-```pyusb
-Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x86\libusb-1.0.dll
-
-To
-
-C:\windows\SysWOW64
-```
-
-### libusb-1.0.dll Library supports on python (64-bit)
-usb.core.NoBackendError: No backend available
-```pyusb
-Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x64\libusb-1.0.dll
-
-To
-
-C:\windows\System32
-```
-
 ### Installing Python Packages with Setup.py
 
 1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
@@ -90,11 +70,11 @@ dlist = searchswitch.get_switches()
 # here COM5, COM8, COM13...etc are exapmple ports.
 sw1 = switch3201.Switch3201('COM5') 
 (or)
-sw2 = switch3141.Switch3141('COM8')
+sw1 = switch3141.Switch3141('COM8')
 (or)
-sw3 = switch2101.Switch2101('0002CC0014FF')
+sw1 = switch2101.Switch2101('0002CC0014FF')
 (or)
-sw4 = switch2301.Switch2301('COM13')
+sw1 = switch2301.Switch2301('COM13')
 ```
 ```python
 # ---Serial Communication---
@@ -102,7 +82,7 @@ sw4 = switch2301.Switch2301('COM13')
 # here /dev/ttyACMO, /dev/ttyACMO.etc are exapmple ports.
 sw1 = switch3201.Switch3201('/dev/ttyACMO') 
 (or)
-sw2 = switch3141.Switch3141('/dev/ttyACMO')
+sw1 = switch3141.Switch3141('/dev/ttyACMO')
 ```
 ### Connect the USB Port
 ``` python
@@ -154,13 +134,6 @@ sw3.port_off()
 ```
 
 ## Release History
-- v1.0.2 Support python 64-bit
-- v1.0.1 update speed change in switch2101
-- v1.0.0 initial release.
-
-
-
-
-
-
-
+- v1.0.3 Support python 64-bit
+- v1.0.2 update speed change in switch2101
+- v1.0.0 initial release
