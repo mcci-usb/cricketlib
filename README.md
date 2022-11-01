@@ -36,26 +36,6 @@ pip install libusb1
 ```
 # pyusb Error
 
-## usb.core.NoBackendError: No backend available
-### libusb-1.0.dll Library supports on python(32-bit)
-```pyusb
-Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x86\libusb-1.0.dll
-
-To
-
-C:\windows\SysWOW64
-```
-
-### libusb-1.0.dll Library supports on python (64-bit)
-usb.core.NoBackendError: No backend available
-```pyusb
-Copy "libusb-1.0.dll" from C:\Python\Python37-32\Lib\site-packages\libusb\_platform\_windows\x64\libusb-1.0.dll
-
-To
-
-C:\windows\System32
-```
-
 ### Installing Python Packages with Setup.py
 
 1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
@@ -154,9 +134,9 @@ sw3.port_off()
 ```
 
 ## Release History
-- v1.0.2 Support python 64-bit
-- v1.0.1 update speed change in switch2101
-- v1.0.0 initial release.
+- v1.0.3 Support python 64-bit
+- v1.0.2 update speed change in switch2101
+- v1.0.0 initial release
 
 
 
