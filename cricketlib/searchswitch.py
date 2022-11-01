@@ -1,3 +1,4 @@
+import sys
 import serial
 import serial.tools.list_ports
 import time
@@ -5,8 +6,29 @@ import sys
 import usb.util
 from usb.backend import libusb1
 
+
+
 VID_2101 = 0x040e
 PID_2101 = 0xf413
+
+path = sys.executable
+
+path = path.replace("python.exe", "")
+
+backend = None
+
+if sys.platform == "win32":
+    backend = usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
+              path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x64\\libusb-1.0.dll")
+
+    # Generator object
+    # usb_devices = usb.core.find(find_all=True, backend=backend)
+usb_devices = usb.core.find(find_all=True, backend=backend)
+print("usb_device:", usb_devices)
+
+    # Here attached a list of Host controlloers, list of Hub,
+    # List of periperals info with specific vid, pid.
+
 
 def version():
     return "Cricketlib v1.0.1"
