@@ -1,6 +1,29 @@
 # cricketlib
 
-This is a Python library to control MCCI USB Switches.
+This is a Python library to control MCCI USB Switches and supports to Cricket UI.
+<!--
+  This TOC uses the VS Code markdown TOC extension AlanWalk.markdown-toc.
+  We strongly recommend updating using VS Code, the markdown-toc extension and the
+  bierner.markdown-preview-github-styles extension. Note that if you are using
+  VS Code 1.29 and Markdown TOC 1.5.6, https://github.com/AlanWalk/markdown-toc/issues/65
+  applies -- you must change your line-ending to some non-auto value in Settings>
+  Text Editor>Files.  `\n` works for me.
+-->
+<!-- markdownlint-disable MD033 MD004 -->
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+<!-- TOC depthFrom:2 updateOnSave:true -->
+
+- [Introduction](#introduction)
+- [Install python](#install-python37-32-bit-package)
+- [Prerequisites for running or building](#prerequisites-for-running-or-building)
+- [Installing cricketlib Packages](#installing-cricketlib-package)
+- [package usage](#package-usage)
+
+- [Release History](#release-history)
+
+## Introduction
+This repository is supports the `Cricket UI` and switching the MCCI USB Switches.
 
 ### Install Python3.7 (32-bit) package 
 install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8.exe)
@@ -36,7 +59,7 @@ pip install libusb1
 ```
 # pyusb Error
 
-### Installing Python Packages with Setup.py
+### Installing cricketlib Packages
 
 1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
 
@@ -50,7 +73,7 @@ python setup.py install
 Please navigate to dist/ directory and you will find the files .egg file.
 Example: `cricketapi-1.0.0-py3.7.egg`
 
-## How to use the package
+## package usage
 Create a Python file and import the class library from package:
 
 ```python
