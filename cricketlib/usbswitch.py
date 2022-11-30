@@ -147,7 +147,43 @@ class UsbSwitch:
         if self.slno == serialno:
             return True
         else:
-            return False
+            return 
+    
+    def read_status(self):
+        """
+        Read the port status in windows, Linux
+        Args:
+            self: The self parameter is a reference to the current 
+            instance of the class,and is used to access variables
+            that belongs to the class.
+            cmd:device write  command sending to port
+        Returns:
+            result: is succes return ro control trasfer
+        """
+        result = None
+        res = -1
+
+        # run in Darwin or Mac OS
+        if sys.platform == 'darwin':
+            dev = hid.device()
+            dev.open_path(self.path)
+            result = dev.get_input_report(0x00, 0x03)
+            dev.close()
+            res = 0
+        else:
+            if self.dev is not None:
+                # run in Linux OS
+                if sys.platform == 'linux':
+                    if self.dev.is_kernel_driver_active(0):
+                        self.dev.detach_kernel_driver(0) 
+                try:
+                    result = self.dev.ctrl_transfer(0xA1, 0x01, 0x100, 0x0000, [0x00, 0x03])
+                    res = 0
+                except:
+                    result = None
+                    res = -1
+        return res, result
+
 
     def control_port(self, cmd):
         """
@@ -169,6 +205,7 @@ class UsbSwitch:
             dev.open_path(self.path)
             result = dev.write([cmd])
             dev.close()
+            res = 0
         else:
             if self.dev is not None:
                 # run in Linux OS

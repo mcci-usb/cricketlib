@@ -21,6 +21,10 @@ class Switch2101(usbswitch.UsbSwitch):
         self.usbnode.scan_2101()
         self.usbnode.select_usb_switch(self.slno)
 
+    def read_port(self):
+        rc, rs = self.usbnode.read_status()
+        return rc, rs
+
     def port_on(self, speed):
         if speed.lower() == "ss":
             self.portcmd = SS_CONNECT
