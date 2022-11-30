@@ -5,7 +5,9 @@ import time
 import sys
 import usb.util
 from usb.backend import libusb1
-import hid
+
+if sys.platform == 'darwin':
+    import hid
 
 
 
