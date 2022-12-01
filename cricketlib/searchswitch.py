@@ -1,3 +1,28 @@
+##############################################################################
+# 
+# Module: searchswitch.py
+#
+# Description:
+#     API to show list of available MCCI USB Switch (3141, 3201, 2101 and 2301)
+#
+# Copyright notice:
+#     This file copyright (c) 2022 by
+#
+#         MCCI Corporation
+#         3520 Krums Corners Road
+#         Ithaca, NY  14850
+#
+#     Released under the MCCI Corporation.
+#
+# Author:
+#     Seenivasan V, MCCI Corporation Dec 2022
+#
+# Revision history:
+#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#       Module created
+##############################################################################
+# Lib imports
+
 import sys
 import serial
 import serial.tools.list_ports
@@ -5,36 +30,31 @@ import time
 import sys
 import usb.util
 from usb.backend import libusb1
+import platform
 
 if sys.platform == 'darwin':
     import hid
-
-
 
 VID_2101 = 0x040e
 PID_2101 = 0xf413
 
 path = sys.executable
-
 path = path.replace("python.exe", "")
 
-backend = None
-
-if sys.platform == "win32":
-    backend = usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
-              path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x64\\libusb-1.0.dll")
-
-    # Generator object
-    # usb_devices = usb.core.find(find_all=True, backend=backend)
-usb_devices = usb.core.find(find_all=True, backend=backend)
-print("usb_device:", usb_devices)
-
-    # Here attached a list of Host controlloers, list of Hub,
-    # List of periperals info with specific vid, pid.
+if sys.platform == 'win32':
+        pver = platform.architecture()
+        if pver[0] == '64bit':
+            usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
+            path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x64\\libusb-1.0.dll")
+            print("64bit NBA")
+        else:
+            usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
+            path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x86\\libusb-1.0.dll")
+            print("32bit NBA")
 
 
 def version():
-    return "Cricketlib v1.0.1"
+    return "Cricketlib v1.0.4"
 
 def get_switches():
     devList = search_switches()
@@ -110,6 +130,7 @@ def search_switches():
     rev_list = []
     dev_list = []
 
+    # Get list of 3141, 3201, 2301 switches    
     port_name = filter_port()
 
     for i in range(len(port_name)):
@@ -155,6 +176,7 @@ def search_switches():
         except serial.SerialException as e:
             pass
 
+    # Get the list of 2101
     dlist = get_2101()
 
     for dl in dlist:

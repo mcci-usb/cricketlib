@@ -57,7 +57,48 @@ pip install pyusb
 pip install libusb
 pip install libusb1
 ```
-# pyusb Error
+
+<strong>On Linux:</strong>
+
+Development environment
+
+* OS - Ubuntu 20.04 and Ubuntu 22.04 64 bit
+* Python - 3.9.10
+* pyserial - 3.4
+* pyusb - 1.0.2
+* libusb - 1.0.22b9
+* libusb1 - 3.0.0
+
+```shell
+sudo apt-get install python3-pip
+sudo pip3 install pyserial
+sudo pip3 install pyusb
+sudo pip3 install libusb
+sudo pip3 install libusb1
+```
+
+<strong>On Mac:</strong>
+
+Development environment
+
+* OS - Mac OS - Catalina 10.15.7 64 bit
+* Python - 3.6.9
+* pyserial - 3.4
+* pyusb - 1.0.2
+* libusb - 1.0.22b9
+* libusb1 - 3.0.0
+* hidapi - 0.10.1 for Mac OS
+
+```shell
+sudo apt-get update
+sudo apt-get install python3
+sudo apt-get install python3-pip
+sudo pip3 install pyserial
+sudo pip3 install pyusb
+brew install libusb
+sudo pip3 install libusb1
+brew install hidapi - Only for Mac OS
+```
 
 ### Installing cricketlib Packages
 
@@ -74,7 +115,7 @@ Please navigate to dist/ directory and you will find the files .egg file.
 Example: `cricketapi-1.0.0-py3.7.egg`
 
 ## package usage
-Create a Python file and import the class library from package:
+Create a Python file `test.py` and import the class library from package:
 
 ```python
 from cricketlib import searchswitch
@@ -157,6 +198,7 @@ sw3.port_off()
 ```
 
 ## Release History
+- v1.0.4 Support for Switch 2101 port status
 - v1.0.3 Support python 64-bit
 - v1.0.2 update speed change in switch2101
 - v1.0.0 initial release

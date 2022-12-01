@@ -1,3 +1,27 @@
+##############################################################################
+# 
+# Module: switch2301.py
+#
+# Description:
+#     Top level API to manage USB Switch 2301
+#
+# Copyright notice:
+#     This file copyright (c) 2022 by
+#
+#         MCCI Corporation
+#         3520 Krums Corners Road
+#         Ithaca, NY  14850
+#
+#     Released under the MCCI Corporation.
+#
+# Author:
+#     Seenivasan V, MCCI Corporation Dec 2022
+#
+# Revision history:
+#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#       Module created
+##############################################################################
+
 from cricketlib import switch 
 
 class Switch2301(switch.Switch):
