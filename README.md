@@ -48,14 +48,12 @@ Development environment
 * Python - 3.7.8
 * pyserial - 3.5
 * pyusb - 1.2.1
-* libusb - 1.0.24b3
-* libusb1 - 3.0.0
+* hidapi - 0.10.1
 
 ```shell
 pip install pyserial
 pip install pyusb
-pip install libusb
-pip install libusb1
+pip install hidapi==0.10.1
 ```
 
 <strong>On Linux:</strong>
@@ -66,8 +64,10 @@ Development environment
 * Python - 3.9.10
 * pyserial - 3.4
 * pyusb - 1.0.2
+* pyusb - 1.0.2
 * libusb - 1.0.22b9
 * libusb1 - 3.0.0
+* hidapi - 0.10.1
 
 ```shell
 sudo apt-get install python3-pip
@@ -75,6 +75,7 @@ sudo pip3 install pyserial
 sudo pip3 install pyusb
 sudo pip3 install libusb
 sudo pip3 install libusb1
+sudo pip3 install hidapi==0.10.1
 ```
 
 <strong>On Mac:</strong>
@@ -99,7 +100,6 @@ brew install libusb
 sudo pip3 install libusb1
 brew install hidapi - Only for Mac OS
 ```
-
 ### Installing cricketlib Packages
 
 1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
@@ -196,9 +196,8 @@ sw3.port_on("hs")
 time.sleep(1)
 sw3.port_off()
 ```
-
 ## Release History
-- v1.0.4 Support for Switch 2101 port status
+- v1.0.4 Support for Switch 2101 port status and implenting hidapi for windows and linux
 - v1.0.3 Support python 64-bit
 - v1.0.2 update speed change in switch2101
 - v1.0.0 initial release
