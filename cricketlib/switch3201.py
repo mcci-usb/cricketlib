@@ -31,7 +31,6 @@ class Switch3201(switch.Switch):
     def get_volts(self):
         cmd = 'volts\r\n'
         rc, rstr = self.send_cmd(cmd)
-        print(rc, rstr)
         return (rc, rstr)
 
     def get_amps(self):

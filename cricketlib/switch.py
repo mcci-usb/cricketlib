@@ -51,7 +51,6 @@ class Switch(serialswitch.SerialDev):
         return self.send_cmd(cmd)
 
     def send_cmd(self, cmd):
-        print(cmd)
         res = self.sport.write(cmd)
         if res > 0:
             res, rstr = self.sport.read()

@@ -22,35 +22,14 @@
 #       Module created
 ##############################################################################
 # Lib imports
-
-import sys
 import serial
 import serial.tools.list_ports
 import time
-import sys
-import usb.util
-from usb.backend import libusb1
-import platform
 
-if sys.platform == 'darwin':
-    import hid
+import hid
 
 VID_2101 = 0x040e
 PID_2101 = 0xf413
-
-path = sys.executable
-path = path.replace("python.exe", "")
-
-if sys.platform == 'win32':
-        pver = platform.architecture()
-        if pver[0] == '64bit':
-            usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
-            path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x64\\libusb-1.0.dll")
-            print("64bit NBA")
-        else:
-            usb.backend.libusb1.get_backend(find_library=lambda x: "" + 
-            path + "Lib\\site-packages\\libusb\\_platform\\_windows\\x86\\libusb-1.0.dll")
-            print("32bit NBA")
 
 
 def version():
@@ -82,48 +61,15 @@ def get_2101():
         dlist: return same device model
     """
     dlist = []
-    if sys.platform == 'darwin':
-        dev = hid.enumerate(VID_2101, PID_2101)
-        if len(dev) != 0:
-            for dev in hid.enumerate(VID_2101, PID_2101):
-                dlist.append(dev['serial_number'])
-    else:
-        for dev in usb.core.find(idVendor=VID_2101, idProduct=PID_2101, 
-                                    find_all=1):
-            slno =  get_serial_number(dev)
-            dlist.append(slno)
+    
+    dev = hid.enumerate(VID_2101, PID_2101)
+    if len(dev) != 0:
+        for dev in hid.enumerate(VID_2101, PID_2101):
+            slno = dev['serial_number']
+            if(len(slno) >= 12):
+                dlist.append(slno)
     return dlist
 
-def get_serial_number(dev):
-    """
-    Get Serial number of the model 2101 device
-
-    Args:
-        dev: 2101 device found in the USB bus 
-    Returns:
-        serial number of the device in String format
-    """
-    ret  = None
-
-    try:
-        ret = dev.ctrl_transfer(0x80, 0x06, 0x303, 0x409, 0x1a)
-    except:
-        ret = None
-
-    # Create data buffers
-    intarr = []
-    # Length of array in integer
-    alen = int(len(ret)/2) - 1
-    k = 2
-    
-    for i in range(alen):
-        byt = [ret[k], ret[k+1]]
-        intpack = int.from_bytes(byt, byteorder='little')
-        intarr.append(intpack)
-        k = k + 2
-    
-    slno = "".join(map(chr, intarr))
-    return slno
 
 def search_switches():
     port_name = []
@@ -193,4 +139,5 @@ def search_switches():
         devlist.append(tempdict)
 
     rdict["switches"] = devlist
+    
     return rdict

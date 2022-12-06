@@ -3,7 +3,6 @@ import serial.tools.list_ports
 
 class SerialDev:
     def __init__(self, port, baud):
-        print("Serial Constructor")
         self.handler = None
         self.port = port
         self.baud = baud
