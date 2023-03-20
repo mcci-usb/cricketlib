@@ -49,6 +49,10 @@ class Switch(serialswitch.SerialDev):
     def get_version(self):
         cmd = 'version\r\n'
         return self.send_cmd(cmd)
+    
+    def get_volts(self):
+        cmd = 'volts\r\n'
+        return self.send_cmd(cmd)
 
     def send_cmd(self, cmd):
         res = self.sport.write(cmd)
