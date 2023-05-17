@@ -24,7 +24,7 @@
 
 from cricketlib import switch 
 
-class Switch3141(switch.Switch):
+class Switch3142(switch.Switch):
     def __init__(self, cport):
         switch.Switch.__init__(self, cport, 115200)
     
@@ -32,6 +32,17 @@ class Switch3141(switch.Switch):
         cmd = 'status\r\n'
         rc, rstr = self.send_status_cmd(cmd) 
         return(rc, rstr)
+    
+    def get_volts(self):
+        cmd = 'volts\r\n'
+        rc, rstr = self.send_cmd(cmd)
+        return (rc, rstr)
+
+    def get_amps(self):
+        cmd = 'amps\r\n'
+        rc, rstr = self.send_cmd(cmd)
+        return (rc, rstr)
+        # return self.send_cmd(cmd)
 
     def get_orientation(self):
         strin = "--"
@@ -60,13 +71,3 @@ class Switch3141(switch.Switch):
         cmd = 'reset\r\n'
         rc, rstr = self.send_cmd(cmd) 
         return(rc, rstr)
-    
-    def get_volts(self):
-        cmd = 'volts\r\n'
-        rc, rstr = self.send_cmd(cmd)
-        return (rc, rstr)
-
-    def get_amps(self):
-        cmd = 'amps\r\n'
-        rc, rstr = self.send_cmd(cmd)
-        return (rc, rstr)
