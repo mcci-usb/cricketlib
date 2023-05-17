@@ -18,7 +18,7 @@
 #     Seenivasan V, MCCI Corporation Dec 2022
 #
 # Revision history:
-#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#   V1.0.6 Thu May 2023 12:05:00   Seenivasan V
 #       Module created
 ##############################################################################
 
@@ -48,10 +48,6 @@ class Switch(serialswitch.SerialDev):
 
     def get_version(self):
         cmd = 'version\r\n'
-        return self.send_cmd(cmd)
-    
-    def get_volts(self):
-        cmd = 'volts\r\n'
         return self.send_cmd(cmd)
 
     def send_cmd(self, cmd):

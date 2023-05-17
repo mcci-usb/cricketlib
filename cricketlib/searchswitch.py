@@ -18,7 +18,7 @@
 #     Seenivasan V, MCCI Corporation Dec 2022
 #
 # Revision history:
-#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
 #       Module created
 ##############################################################################
 # Lib imports
@@ -101,9 +101,12 @@ def search_switches():
             strout = ser.readline().decode('utf-8')
             nstr = strout[2:]
             if(nstr.find('01') != -1):
-                cmd = 'volts\r\n'
+                cmd = 'stream\r\n'
                 ser.write(cmd.encode())
                 strout = ser.readline().decode('utf-8')
+                cmd = 'stream\r\n'
+                ser.write(cmd.encode())
+                print(strout)
                 if(strout.startswith('#')):
                     rev_list.append(port_name[i])
                     dev_list.append('3142')

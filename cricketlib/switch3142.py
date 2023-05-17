@@ -18,7 +18,7 @@
 #     Seenivasan V, MCCI Corporation Dec 2022
 #
 # Revision history:
-#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
 #       Module created
 ##############################################################################
 
@@ -32,6 +32,17 @@ class Switch3142(switch.Switch):
         cmd = 'status\r\n'
         rc, rstr = self.send_status_cmd(cmd) 
         return(rc, rstr)
+    
+    def get_volts(self):
+        cmd = 'volts\r\n'
+        rc, rstr = self.send_cmd(cmd)
+        return (rc, rstr)
+
+    def get_amps(self):
+        cmd = 'amps\r\n'
+        rc, rstr = self.send_cmd(cmd)
+        return (rc, rstr)
+        # return self.send_cmd(cmd)
 
     def get_orientation(self):
         strin = "--"
