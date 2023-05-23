@@ -1,3 +1,26 @@
+##############################################################################
+# 
+# Module: Serialswitch.py
+#
+# Description:
+#     API to show list of available MCCI USB Switch (3141, 3201, 2101 and 2301)
+#
+# Copyright notice:
+#     This file copyright (c) 2022 by
+#
+#         MCCI Corporation
+#         3520 Krums Corners Road
+#         Ithaca, NY  14850
+#
+#     Released under the MCCI Corporation.
+#
+# Author:
+#     Seenivasan V, MCCI Corporation Dec 2022
+#
+# Revision history:
+#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
+#       Module created
+##############################################################################
 import serial
 import serial.tools.list_ports
 

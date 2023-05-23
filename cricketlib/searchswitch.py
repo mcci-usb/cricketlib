@@ -18,7 +18,7 @@
 #     Seenivasan V, MCCI Corporation Dec 2022
 #
 # Revision history:
-#    V1.0.4 Thu Dec 01 2022 12:05:00   Seenivasan V
+#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
 #       Module created
 ##############################################################################
 # Lib imports
@@ -38,6 +38,13 @@ def version():
 def get_switches():
     devList = search_switches()
     return devList
+
+def get_avail_ports():
+    comlist = serial.tools.list_ports.comports()
+    port_name = []
+    for port, desc, hwid in sorted(comlist):
+        port_name.append((hwid, port, desc))
+    return port_name
 
 def filter_port():
     usb_hwid_str = ["USB VID:PID=045E:0646", "USB VID:PID=2341:0042"]
@@ -87,18 +94,29 @@ def search_switches():
                                 stopbits=serial.STOPBITS_ONE)
            
             time.sleep(1)
-    
+
             cmd = 'version\r\n'
+    
             ser.write(cmd.encode())
             strout = ser.readline().decode('utf-8')
             nstr = strout[2:]
             if(nstr.find('01') != -1):
-                rev_list.append(port_name[i])
-                dev_list.append('3141')
+                cmd = 'stream\r\n'
+                ser.write(cmd.encode())
+                strout = ser.readline().decode('utf-8')
+                cmd = 'stream\r\n'
+                ser.write(cmd.encode())
+                print(strout)
+                if(strout.startswith('#')):
+                    rev_list.append(port_name[i])
+                    dev_list.append('3142')
+                else:
+                    rev_list.append(port_name[i])
+                    dev_list.append('3141')
             elif(nstr.find('12') != -1):
-
                 rev_list.append(port_name[i])
                 dev_list.append('3201')
+
             ser.close()
 
             # Here the baudrate as fixed the 9600 
@@ -117,6 +135,7 @@ def search_switches():
             if(nstr.find('08') != -1):
                 rev_list.append(port_name[i])
                 dev_list.append('2301')
+            
             ser.close()
 
         except serial.SerialException as e:
