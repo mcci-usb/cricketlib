@@ -57,6 +57,14 @@ class Switch(serialswitch.SerialDev):
         else:
             rstr = "Comm Error\n"
         return res, rstr
+    
+    def send_reset(self, cmd):
+        res = self.sport.write(cmd)
+        if res > 0:
+            rstr = "success\n"
+        else:
+            rstr = "Comm Error\n"
+        return res, rstr
 
     def port_cmd(self, pno):
         return 'port '+str(pno)+'\r\n'

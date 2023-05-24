@@ -69,5 +69,5 @@ class Switch3142(switch.Switch):
     
     def do_reset(self):
         cmd = 'reset\r\n'
-        rc, rstr = self.send_cmd(cmd) 
+        rc, rstr = self.send_reset(cmd) 
         return(rc, rstr)
