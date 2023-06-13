@@ -1,8 +1,8 @@
 ==========
-cricketlib
+cricketapi
 ==========
 
-This is the documentation of **cricketlib**.
+This is the documentation of **cricketapi**.
 
 .. note::
 

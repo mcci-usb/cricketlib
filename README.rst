@@ -1,27 +1,27 @@
 .. These are examples of badges you might want to add to your README:
    please update the URLs accordingly
 
-    .. image:: https://api.cirrus-ci.com/github/<USER>/cricketlib.svg?branch=main
+    .. image:: https://api.cirrus-ci.com/github/<USER>/cricketapi.svg?branch=main
         :alt: Built Status
-        :target: https://cirrus-ci.com/github/<USER>/cricketlib
-    .. image:: https://readthedocs.org/projects/cricketlib/badge/?version=latest
+        :target: https://cirrus-ci.com/github/<USER>/cricketapi
+    .. image:: https://readthedocs.org/projects/cricketapi/badge/?version=latest
         :alt: ReadTheDocs
-        :target: https://cricketlib.readthedocs.io/en/stable/
-    .. image:: https://img.shields.io/coveralls/github/<USER>/cricketlib/main.svg
+        :target: https://cricketapi.readthedocs.io/en/stable/
+    .. image:: https://img.shields.io/coveralls/github/<USER>/cricketapi/main.svg
         :alt: Coveralls
-        :target: https://coveralls.io/r/<USER>/cricketlib
-    .. image:: https://img.shields.io/pypi/v/cricketlib.svg
+        :target: https://coveralls.io/r/<USER>/cricketapi
+    .. image:: https://img.shields.io/pypi/v/cricketapi.svg
         :alt: PyPI-Server
-        :target: https://pypi.org/project/cricketlib/
-    .. image:: https://img.shields.io/conda/vn/conda-forge/cricketlib.svg
+        :target: https://pypi.org/project/cricketapi/
+    .. image:: https://img.shields.io/conda/vn/conda-forge/cricketapi.svg
         :alt: Conda-Forge
-        :target: https://anaconda.org/conda-forge/cricketlib
-    .. image:: https://pepy.tech/badge/cricketlib/month
+        :target: https://anaconda.org/conda-forge/cricketapi
+    .. image:: https://pepy.tech/badge/cricketapi/month
         :alt: Monthly Downloads
-        :target: https://pepy.tech/project/cricketlib
+        :target: https://pepy.tech/project/cricketapi
     .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter
         :alt: Twitter
-        :target: https://twitter.com/cricketlib
+        :target: https://twitter.com/cricketapi
 
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
@@ -30,7 +30,7 @@
 |
 
 ==========
-cricketlib
+cricketapi
 ==========
 
 
