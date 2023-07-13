@@ -1,138 +1,16 @@
 # cricketlib
 
 This is a Python library to control MCCI USB Switches Model 3201, Model 3141, Model 2301, Model 2101, Model 3142
-<!--
-  This TOC uses the VS Code markdown TOC extension AlanWalk.markdown-toc.
-  We strongly recommend updating using VS Code, the markdown-toc extension and the
-  bierner.markdown-preview-github-styles extension. Note that if you are using
-  VS Code 1.29 and Markdown TOC 1.5.6, https://github.com/AlanWalk/markdown-toc/issues/65# cricketlib
 
-<!--
-  This TOC uses the VS Code markdown TOC extension AlanWalk.markdown-toc.
-  We strongly recommend updating using VS Code, the markdown-toc extension and the
-  bierner.markdown-preview-github-styles extension. Note that if you are using
-  VS Code 1.29 and Markdown TOC 1.5.6, https://github.com/AlanWalk/markdown-toc/issues/65
-  applies -- you must change your line-ending to some non-auto value in Settings>
-  Text Editor>Files.  `\n` works for me.
--->
-<!-- markdownlint-disable MD033 MD004 -->
-<!-- markdownlint-capture -->
-<!-- markdownlint-disable -->
-<!-- TOC depthFrom:2 updateOnSave:true -->
+Before start the this test file ensure need To install the required libraries.
+Visit the following link [READEME](https://github.com/mcci-usb/cricketlib#readme)
 
-- [Introduction](#introduction)
-- [Install python](#install-python37-32-bit-package)
-- [Prerequisites for running or building](#prerequisites-for-running-or-building)
-- [Installing cricketlib Packages](#installing-cricketlib-packages)
-- [package usage](#package-usage)
-
-- [Release History](#release-history)
-
-## Introduction
-This example files operate this switches 
-
-### Install Python3.7 (32-bit) package 
-install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8.exe)
-
-
-### Install Python3.7 (64-bit) package
-install python package from [python.org](https://www.python.org/ftp/python/3.7.8/python-3.7.8-amd64.exe)
-
-### Install pip package
-```shell
-pip --version
-python -m pip install --upgrade pip
-```
-
-### Prerequisites for running or building
-
-<strong>On Windows:</strong>
-
-Development environment
-* OS - Windows 10 and 11 64 bit
-* Python - 3.7.8
-* pyserial - 3.5
-* pyusb - 1.2.1
-* hidapi - 0.11.2
-
-```shell
-pip install pyserial
-pip install pyusb
-pip install hidapi==0.11.2
-```
-
-<strong>On Linux:</strong>
-
-Development environment
-* OS - Ubuntu 20.04 and Ubuntu 22.04 64 bit
-* Python - 3.9.10
-* pyserial - 3.4
-* pyusb - 1.0.2
-* libusb - 1.0.22b9
-* libusb1 - 3.0.0
-* hidapi - 0.11.2
-
-
-```shell
-sudo apt-get install python3-pip
-sudo pip3 install pyserial
-sudo pip3 install pyusb
-sudo pip3 install libusb
-sudo pip3 install libusb1
-sudo pip3 install hidapi==0.11.2
-```
-
-<strong>On Mac:</strong>
-
-Development environment
-* OS - Mac OS - Catalina 10.15.7 64 bit
-* Python - 3.6.9
-* pyserial - 3.4
-* pyusb - 1.0.2
-* libusb - 1.0.22b9
-* libusb1 - 3.0.0
-* hidapi - 0.10.1 for Mac OS
-
-```shell
-sudo apt-get update
-sudo apt-get install python3
-sudo apt-get install python3-pip
-sudo pip3 install pyserial
-sudo pip3 install pyusb
-brew install libusb
-sudo pip3 install libusb1
-brew install hidapi - Only for Mac OS
-```
-### Installing cricketlib Packages
-
-1.  Clone the repository from [github](https://github.com/mcci-usb/cricketlib)
-
-2.  Open a `cmd terminal` and change directory to  `{path_to_repository}/cricketlib`. using `cd` into the root directory where setup.py is located
-
-3.  To install the library in your local Python setup, enter the command in Windows OS
-```bash
-python setup.py install
-```
-4.  To install the library in your local Python setup, enter the command in Linux OS.
-```bash
-sudo python3 setup.py install
-```
-5.  To install the library in your local Python setup, enter the command in `Mac OS`
-```bash
-sudo python3 setup.py install
-```
-
-Please navigate to dist/ directory and you will find the files .egg file.
-Example: `cricketapi-1.5.0-py3.7.egg`
-
-## package usage
-Create a Python file named `Simpletest.py` and open in text editor and import the `cricketlib` modules.
+follow the readme file to install all required libraries from here 
 
 ```python
 # avalaible list of MCCI Switches with port number
 from cricketlib import searchswitch
 ```
-
 ```python
 # import lib for switch 3142, switch3201, switch 2101, 2301
 # based on the Switch mode update the import lib.
