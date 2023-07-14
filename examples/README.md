@@ -2,8 +2,8 @@
 
 This is a Python library to control MCCI USB Switches Model 3201, Model 3141, Model 2301, Model 2101, Model 3142
 
-Before start the this test file ensure need To install the required libraries.
-Visit the following link [READEME](https://github.com/mcci-usb/cricketlib#readme)
+Before start the this test file ensure to install the required libraries.
+follow the readme file to install all required libraries from here [READEME](https://github.com/mcci-usb/cricketlib#readme)
 
 follow the readme file to install all required libraries from here 
 

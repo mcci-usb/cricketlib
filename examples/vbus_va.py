@@ -7,15 +7,8 @@
 #     It also includes functionality to read and update voltage and current measurements 
 #     when switching the ports.
 #
-# Copyright notice:
-#     This file copyright (c) 2020 by
-#
-#         MCCI Corporation
-#         3520 Krums Corners Road
-#         Ithaca, NY  14850
-#
-# The below code refers only for MCCI Switch Model 3201, if using a different MCCI Switch Model
-# kindly update the header accordingly.
+# The below code refers only for MCCI Switch Model 3201, if using a different 
+# MCCI Switch Model kindly update the header accordingly.
 # 
 # Support MCCI Switch Models:
 #     MCCI Switch Model 3201
