@@ -86,7 +86,7 @@ class Switch(serialswitch.SerialDev):
         outstr = ""
         res = self.sport.write(cmd)
         if res > 0:
-            for i in range(14):
+            for i in range(25):
                 res, rstr = self.sport.read()
                 if res == 0:
                     outstr = outstr + rstr

@@ -139,6 +139,11 @@ def search_switches():
     
             ser.write(status_cmd.encode())
             strout = ser.readline().decode('utf-8')
+            
+            start_time = time.time()
+            while (time.time() - start_time) < 2:
+                line = ser.readline()
+            
             if 'Model 3142' in strout:
                 rev_list.append(port_name[i])
                 dev_list.append('3142')
