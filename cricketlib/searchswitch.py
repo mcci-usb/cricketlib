@@ -33,7 +33,7 @@ PID_2101 = 0xf413
 
 
 def version():
-    return "Cricketlib v1.0.4"
+    return "Cricketlib v1.0.7"
 
 def get_switches():
     devList = search_switches()
@@ -101,18 +101,8 @@ def search_switches():
             strout = ser.readline().decode('utf-8')
             nstr = strout[2:]
             if(nstr.find('01') != -1):
-                cmd = 'stream\r\n'
-                ser.write(cmd.encode())
-                strout = ser.readline().decode('utf-8')
-                cmd = 'stream\r\n'
-                ser.write(cmd.encode())
-                print(strout)
-                if(strout.startswith('#')):
-                    rev_list.append(port_name[i])
-                    dev_list.append('3142')
-                else:
-                    rev_list.append(port_name[i])
-                    dev_list.append('3141')
+                rev_list.append(port_name[i])
+                dev_list.append('3141')
             elif(nstr.find('12') != -1):
                 rev_list.append(port_name[i])
                 dev_list.append('3201')
@@ -135,6 +125,23 @@ def search_switches():
             if(nstr.find('08') != -1):
                 rev_list.append(port_name[i])
                 dev_list.append('2301')
+            
+            ser.close()
+            
+            #------------ MODEL 3201
+            ser = serial.Serial(port=port_name[i], baudrate=115200, 
+                                bytesize=serial.EIGHTBITS,
+                                parity=serial.PARITY_NONE, timeout=1, 
+                                stopbits=serial.STOPBITS_ONE)
+            time.sleep(1)
+    
+            status_cmd = 'status\r\n'
+    
+            ser.write(status_cmd.encode())
+            strout = ser.readline().decode('utf-8')
+            if 'Model 3142' in strout:
+                rev_list.append(port_name[i])
+                dev_list.append('3142')
             
             ser.close()
 
