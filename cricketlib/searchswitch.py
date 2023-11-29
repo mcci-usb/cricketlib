@@ -77,6 +77,80 @@ def get_2101():
                 dlist.append(slno)
     return dlist
 
+def check_status(myport):
+    myswitch = None
+    try:
+        ser = serial.Serial(myport, baudrate=115200, 
+                            bytesize=serial.EIGHTBITS,
+                            parity=serial.PARITY_NONE, timeout=1, 
+                            stopbits=serial.STOPBITS_ONE)
+        time.sleep(1)
+
+        status_cmd = 'status\r\n'
+
+        ser.write(status_cmd.encode())
+        strout = ser.readline().decode('utf-8')
+        
+        start_time = time.time()
+        while (time.time() - start_time) < 2:
+            line = ser.readline()
+        
+        if 'Model 3142' in strout:
+            myswitch = '3142'
+        elif 'Model 3141' in strout:
+            myswitch = '3141'
+        ser.close()
+        
+        return myswitch
+    except serial.SerialException as e:
+        return myswitch
+            
+
+def check_version(myport):
+    myswitch = None
+    try:
+        ser = serial.Serial(myport, baudrate=115200, 
+                            bytesize=serial.EIGHTBITS,
+                            parity=serial.PARITY_NONE, timeout=1, 
+                            stopbits=serial.STOPBITS_ONE)
+        time.sleep(1)
+
+        cmd = 'version\r\n'
+    
+        ser.write(cmd.encode())
+        strout = ser.readline().decode('utf-8')
+        nstr = strout[2:]
+        if(nstr.find('01') != -1):
+            myswitch = '3141'
+        elif(nstr.find('12') != -1):
+            myswitch = '3201'
+        ser.close()
+        return myswitch
+    except serial.SerialException as e:
+        return myswitch 
+    
+    
+def check_2301(myport):
+    myswitch = None
+    try:
+        ser = serial.Serial(myport, baudrate=9600, 
+                            bytesize=serial.EIGHTBITS,
+                            parity=serial.PARITY_NONE, timeout=1, 
+                            stopbits=serial.STOPBITS_ONE)
+        time.sleep(1)
+
+        cmd = 'version\r\n'
+    
+        ser.write(cmd.encode())
+        strout = ser.readline().decode('utf-8')
+        nstr = strout[2:]
+        if(nstr.find('08') != -1):
+            myswitch = '2301'
+        ser.close()
+        return myswitch
+    except serial.SerialException as e:
+        return myswitch  
+
 
 def search_switches():
     port_name = []
@@ -87,72 +161,22 @@ def search_switches():
     port_name = filter_port()
 
     for i in range(len(port_name)):
-        try:
-            ser = serial.Serial(port=port_name[i], baudrate=115200, 
-                                bytesize=serial.EIGHTBITS,
-                                parity=serial.PARITY_NONE, timeout=1, 
-                                stopbits=serial.STOPBITS_ONE)
-           
-            time.sleep(1)
-
-            cmd = 'version\r\n'
-    
-            ser.write(cmd.encode())
-            strout = ser.readline().decode('utf-8')
-            nstr = strout[2:]
-            if(nstr.find('01') != -1):
-                rev_list.append(port_name[i])
-                dev_list.append('3141')
-            elif(nstr.find('12') != -1):
-                rev_list.append(port_name[i])
-                dev_list.append('3201')
-
-            ser.close()
-
-            # Here the baudrate as fixed the 9600 
-            # baudrate supports Model 2301 device
-            ser = serial.Serial(port=port_name[i], baudrate=9600, 
-                                bytesize=serial.EIGHTBITS,
-                                parity=serial.PARITY_NONE, timeout=1, 
-                                stopbits=serial.STOPBITS_ONE)
-            time.sleep(1)
-    
-            cmd = 'version\r\n'
-    
-            ser.write(cmd.encode())
-            strout = ser.readline().decode('utf-8')
-            nstr = strout[2:]
-            if(nstr.find('08') != -1):
-                rev_list.append(port_name[i])
-                dev_list.append('2301')
+        myswitch = check_status(port_name[i])
+        if myswitch != None:
+            rev_list.append(port_name[i])
+            dev_list.append(myswitch)
+            continue
+        myswitch = check_version(port_name[i])
+        if myswitch != None:
+            rev_list.append(port_name[i])
+            dev_list.append(myswitch)
+            continue
+        myswitch = check_2301(port_name[i])
+        if myswitch != None:
+            rev_list.append(port_name[i])
+            dev_list.append(myswitch)
             
-            ser.close()
             
-            #------------ MODEL 3201
-            ser = serial.Serial(port=port_name[i], baudrate=115200, 
-                                bytesize=serial.EIGHTBITS,
-                                parity=serial.PARITY_NONE, timeout=1, 
-                                stopbits=serial.STOPBITS_ONE)
-            time.sleep(1)
-    
-            status_cmd = 'status\r\n'
-    
-            ser.write(status_cmd.encode())
-            strout = ser.readline().decode('utf-8')
-            
-            start_time = time.time()
-            while (time.time() - start_time) < 2:
-                line = ser.readline()
-            
-            if 'Model 3142' in strout:
-                rev_list.append(port_name[i])
-                dev_list.append('3142')
-            
-            ser.close()
-
-        except serial.SerialException as e:
-            pass
-
     # Get the list of 2101
     dlist = get_2101()
 
