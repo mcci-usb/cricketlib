@@ -2,11 +2,11 @@
 # 
 # Module: switch3141.py
 #
-# Description:
-#     Top level API to manage USB Switch 3141
+# Description :
+#     Control API for USB Switch Model 3141.
 #
 # Copyright notice:
-#     This file copyright (c) 2022 by
+#     This file copyright (c) 2026 by
 #
 #         MCCI Corporation
 #         3520 Krums Corners Road
@@ -15,25 +15,45 @@
 #     Released under the MCCI Corporation.
 #
 # Author:
-#     Seenivasan V, MCCI Corporation Dec 2022
+#     Vinay N, MCCI Corporation Feb 2026
 #
 # Revision history:
-#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
+#    V1.0.8 Thu Feb 2026 12:05:00   Vinay N
 #       Module created
 ##############################################################################
 
 from cricketlib import switch 
 
 class Switch3141(switch.Switch):
+    """
+    Control class for Model 3141 switch.
+
+    Parameters :
+        cport (str) : COM port
+    """
     def __init__(self, cport):
         switch.Switch.__init__(self, cport, 115200)
     
     def get_status(self):
+        """
+        Retrieves detailed device status.
+
+        Returns :
+            tuple : (status, multiline_status_string)
+        """
+        
         cmd = 'status\r\n'
         rc, rstr = self.send_status_cmd(cmd) 
         return(rc, rstr)
 
     def get_orientation(self):
+        """
+        Detects USB cable orientation.
+
+        Returns :
+            tuple :
+                (status, 'Flip' | 'Normal' | 'ComError')
+        """
         strin = "--"
         rc, rstr = self.get_status()
         if rc == 0:
@@ -57,16 +77,27 @@ class Switch3141(switch.Switch):
             return (rc, "ComError")
     
     def do_reset(self):
+        """
+        Resets the device.
+
+        Returns :
+            tuple : (status, message)
+        """
+        
         cmd = 'reset\r\n'
         rc, rstr = self.send_reset(cmd) 
         return(rc, rstr)
     
     def get_volts(self):
+        """Reads voltage value."""
+        
         cmd = 'volts\r\n'
         rc, rstr = self.send_cmd(cmd)
         return (rc, rstr)
 
     def get_amps(self):
+        """Reads current value."""
+        
         cmd = 'amps\r\n'
         rc, rstr = self.send_cmd(cmd)
         return (rc, rstr)

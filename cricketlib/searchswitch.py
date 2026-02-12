@@ -6,7 +6,7 @@
 #     API to show list of available MCCI USB Switch (3141, 3201, 2101 and 2301)
 #
 # Copyright notice:
-#     This file copyright (c) 2022 by
+#     This file copyright (c) 2026 by
 #
 #         MCCI Corporation
 #         3520 Krums Corners Road
@@ -15,10 +15,10 @@
 #     Released under the MCCI Corporation.
 #
 # Author:
-#     Seenivasan V, MCCI Corporation Dec 2022
+#     Vinay N, MCCI Corporation Feb 2026
 #
 # Revision history:
-#    V1.0.6 Thu May 2023 12:05:00   Seenivasan V
+#    V1.0.8 Thu Feb 2026 12:05:00   Vinay N
 #       Module created
 ##############################################################################
 # Lib imports
@@ -33,13 +33,38 @@ PID_2101 = 0xf413
 
 
 def version():
+    """
+    Returns library version.
+
+    Returns :
+        str : CricketLib version string
+    """
+    
     return "Cricketlib v1.0.7"
 
 def get_switches():
+    """
+    Retrieves list of all detected switch devices.
+
+    Returns :
+        dict : {
+            "switches": [
+                {"port": <port/serial>, "model": <model>}
+            ]
+        }
+    """
+    
     devList = search_switches()
     return devList
 
 def get_avail_ports():
+    """
+    Lists all available COM ports in the system.
+
+    Returns :
+        list[tuple] :
+            (HWID, Port Name, Description)
+    """
     comlist = serial.tools.list_ports.comports()
     port_name = []
     for port, desc, hwid in sorted(comlist):
@@ -47,6 +72,14 @@ def get_avail_ports():
     return port_name
 
 def filter_port():
+    """
+    Filters COM ports matching supported USB VID/PID.
+
+    Used to identify potential switch devices.
+
+    Returns :
+        list[str] : Filtered COM port names
+    """
     usb_hwid_str = ["USB VID:PID=045E:0646", "USB VID:PID=2341:0042"]
     comlist = serial.tools.list_ports.comports()
     port_name = []
@@ -59,13 +92,10 @@ def filter_port():
 
 def get_2101():
     """
-    get the model2101 enumaration in darwin 
-    Args:
-        self: The self parameter is a reference to the current 
-        instance of the class,and is used to access variables
-        that belongs to the class.
-    Returns: 
-        dlist: return same device model
+    Enumerates Model 2101 devices via HID interface.
+
+    Returns :
+        list[str] : Serial numbers of detected 2101 devices
     """
     dlist = []
     
@@ -78,6 +108,17 @@ def get_2101():
     return dlist
 
 def check_status(myport):
+    """
+    Detects switch model using 'status' command.
+
+    Parameters :
+        myport (str) : COM port name
+
+    Returns :
+        str | None :
+            '3141', '3142' if detected
+            None if not identified
+    """
     myswitch = None
     try:
         ser = serial.Serial(myport, baudrate=115200, 
@@ -107,6 +148,16 @@ def check_status(myport):
             
 
 def check_version(myport):
+    """
+    Detects switch model using 'version' command.
+
+    Parameters :
+        myport (str) : COM port name
+
+    Returns :
+        str | None :
+            '3141' or '3201'
+    """
     myswitch = None
     try:
         ser = serial.Serial(myport, baudrate=115200, 
@@ -131,6 +182,15 @@ def check_version(myport):
     
     
 def check_2301(myport):
+    """
+    Detects Model 2301 switch.
+
+    Parameters :
+        myport (str) : COM port name
+
+    Returns :
+        str | None : '2301' if detected
+    """
     myswitch = None
     try:
         ser = serial.Serial(myport, baudrate=9600, 
@@ -151,8 +211,21 @@ def check_2301(myport):
     except serial.SerialException as e:
         return myswitch  
 
-
 def search_switches():
+    """
+    Main discovery function.
+
+    Detects all supported switch devices
+    via Serial + HID interfaces.
+
+    Returns :
+        dict :
+        {
+            "switches": [
+                {"port": <port/serial>, "model": <model>}
+            ]
+        }
+    """
     port_name = []
     rev_list = []
     dev_list = []
